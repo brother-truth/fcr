@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="fcr.dao.ExpTestMapper">
+  <resultMap id="BaseResultMap" type="fcr.model.ExpTest">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="subject_id" jdbcType="INTEGER" property="subjectId" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="time" jdbcType="INTEGER" property="time" />
+    <result column="result" jdbcType="INTEGER" property="result" />
+    <result column="fault" jdbcType="INTEGER" property="fault" />
+    <result column="date" jdbcType="VARCHAR" property="date" />
+    <result column="first_time" jdbcType="INTEGER" property="firstTime" />
+    <result column="last_time" jdbcType="INTEGER" property="lastTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, subject_id, content, time, result, fault, date, first_time, last_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from exp_test
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from exp_test
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="fcr.model.ExpTest">
+    insert into exp_test (id, subject_id, content, 
+      time, result, fault, 
+      date, first_time, last_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{subjectId,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, 
+      #{time,jdbcType=INTEGER}, #{result,jdbcType=INTEGER}, #{fault,jdbcType=INTEGER}, 
+      #{date,jdbcType=VARCHAR}, #{firstTime,jdbcType=INTEGER}, #{lastTime,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="fcr.model.ExpTest">
+    insert into exp_test
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="subjectId != null">
+        subject_id,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="time != null">
+        time,
+      </if>
+      <if test="result != null">
+        result,
+      </if>
+      <if test="fault != null">
+        fault,
+      </if>
+      <if test="date != null">
+        date,
+      </if>
+      <if test="firstTime != null">
+        first_time,
+      </if>
+      <if test="lastTime != null">
+        last_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="subjectId != null">
+        #{subjectId,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=INTEGER},
+      </if>
+      <if test="result != null">
+        #{result,jdbcType=INTEGER},
+      </if>
+      <if test="fault != null">
+        #{fault,jdbcType=INTEGER},
+      </if>
+      <if test="date != null">
+        #{date,jdbcType=VARCHAR},
+      </if>
+      <if test="firstTime != null">
+        #{firstTime,jdbcType=INTEGER},
+      </if>
+      <if test="lastTime != null">
+        #{lastTime,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="fcr.model.ExpTest">
+    update exp_test
+    <set>
+      <if test="subjectId != null">
+        subject_id = #{subjectId,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null">
+        time = #{time,jdbcType=INTEGER},
+      </if>
+      <if test="result != null">
+        result = #{result,jdbcType=INTEGER},
+      </if>
+      <if test="fault != null">
+        fault = #{fault,jdbcType=INTEGER},
+      </if>
+      <if test="date != null">
+        date = #{date,jdbcType=VARCHAR},
+      </if>
+      <if test="firstTime != null">
+        first_time = #{firstTime,jdbcType=INTEGER},
+      </if>
+      <if test="lastTime != null">
+        last_time = #{lastTime,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="fcr.model.ExpTest">
+    update exp_test
+    set subject_id = #{subjectId,jdbcType=INTEGER},
+      content = #{content,jdbcType=VARCHAR},
+      time = #{time,jdbcType=INTEGER},
+      result = #{result,jdbcType=INTEGER},
+      fault = #{fault,jdbcType=INTEGER},
+      date = #{date,jdbcType=VARCHAR},
+      first_time = #{firstTime,jdbcType=INTEGER},
+      last_time = #{lastTime,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
